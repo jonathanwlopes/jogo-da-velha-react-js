@@ -1,9 +1,11 @@
 import { useGameContext } from "../../../context/GameContext"
+import { usePlayer } from "../../../context/PlayerContext"
 import * as S from "./style"
 
 export const ScorePanel = () => {
-  const { firstPlayer, secondPlayer, secondPlayerPoints, firstPlayerPoints, move } = useGameContext()
-
+  const { secondPlayerPoints, firstPlayerPoints, move } = useGameContext()
+  const { firstPlayer, secondPlayer } = usePlayer()
+  
   return (
     <S.Container>
       <S.Points>{firstPlayerPoints}</S.Points>

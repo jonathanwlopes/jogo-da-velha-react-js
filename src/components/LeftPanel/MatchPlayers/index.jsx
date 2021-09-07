@@ -1,11 +1,13 @@
 import { useGameContext } from "../../../context/GameContext"
+import { usePlayer } from "../../../context/PlayerContext"
 import { Input } from "../../shared/Input"
 import { ToggleOption } from "../../shared/ToggleOption"
 import * as S from "./style"
 
 export const MatchPlayers = () => {
-  const { firstPlayer, setFirstPlayer, secondPlayer, setSecondPlayer, isBot, setIsBot, gameStart } = useGameContext()
-
+  const { isBot, setIsBot, gameStart } = useGameContext()
+  const { firstPlayer, secondPlayer, setFirstPlayer, setSecondPlayer } = usePlayer()
+  
   const handleToggleBot = () => {
     setIsBot(!isBot)
     !isBot && setSecondPlayer("Computador")

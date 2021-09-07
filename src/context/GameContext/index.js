@@ -5,8 +5,6 @@ const GameContext = createContext({})
 export const INITIAL_SCENERY = ["", "", "", "", "", "", "", "", ""]
 
 export const GameProvider = ({ children }) => {
-  const [firstPlayer, setFirstPlayer] = useState("Jonathan")
-  const [secondPlayer, setSecondPlayer] = useState("Raul")
   const [bestOfFive, setBestOfFive] = useState(false)
   const [firstPlayerPoints, setFirstPlayerPoints] = useState(0)
   const [secondPlayerPoints, setSecondPlayerPoints] = useState(0)
@@ -53,10 +51,6 @@ export const GameProvider = ({ children }) => {
   return (
     <GameContext.Provider
       value={{
-        firstPlayer,
-        setFirstPlayer,
-        secondPlayer,
-        setSecondPlayer,
         bestOfFive,
         setBestOfFive,
         secondPlayerPoints,
@@ -77,6 +71,7 @@ export const GameProvider = ({ children }) => {
         setPlays,
         resetScenery,
         resetGame,
+        resetBattlefield
       }}
     >
       {children}
