@@ -4,6 +4,7 @@ import * as S from "./style"
 
 export const Battlefield = () => {
   const [winner, setWinner] = useState("")
+
   const {
     secondPlayerPoints,
     setSecondPlayerPoints,
@@ -18,6 +19,7 @@ export const Battlefield = () => {
     setScenery,
     gameStart,
     setPlays,
+    resetBattlefield,
   } = useGameContext()
 
   useEffect(() => {
@@ -25,6 +27,10 @@ export const Battlefield = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scenery])
 
+  const reset = () => {
+    setWinner("")
+    resetBattlefield()
+  }
   const toggleMove = () => {
     if (move === "X") {
       setMove("O")
@@ -33,13 +39,6 @@ export const Battlefield = () => {
       setMove("X")
       return "X"
     }
-  }
-
-  const resetBattlefield = () => {
-    setScenery(["", "", "", "", "", "", "", "", ""])
-    setWinner("")
-    setMove("X")
-    setPlays([])
   }
 
   const isFull = () => {
@@ -67,7 +66,7 @@ export const Battlefield = () => {
         setWinner(userWinner)
         setFirstPlayerPoints(firstPlayerPoints + 1)
         setSceneryWinner([...sceneryWinner, { winner: userWinner, scenery }])
-        setTimeout(resetBattlefield, 1000)
+        setTimeout(reset, 1000)
       }
 
       if (scenery[listPositionWinner[i][0]] === "O" && scenery[listPositionWinner[i][1]] === "O" && scenery[listPositionWinner[i][2]] === "O") {
@@ -75,12 +74,12 @@ export const Battlefield = () => {
         setWinner(userWinner)
         setSecondPlayerPoints(secondPlayerPoints + 1)
         setSceneryWinner([...sceneryWinner, { winner: userWinner, scenery }])
-        setTimeout(resetBattlefield, 1000)
+        setTimeout(reset, 1000)
       }
     }
 
     if (!winner && isFull()) {
-      setTimeout(resetBattlefield, 1000)
+      setTimeout(reset, 1000)
     }
   }
 

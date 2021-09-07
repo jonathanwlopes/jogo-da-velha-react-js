@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react"
+import { createContext, useContext, useEffect, useState } from "react"
 
 const GameContext = createContext({})
 
@@ -16,6 +16,39 @@ export const GameProvider = ({ children }) => {
   const [scenery, setScenery] = useState(INITIAL_SCENERY)
   const [gameStart, setGameStart] = useState(false)
   const [plays, setPlays] = useState([])
+
+  useEffect(() => {
+    checkScore()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [firstPlayerPoints, secondPlayerPoints])
+
+  const checkScore = () => {
+    if (!bestOfFive && (firstPlayerPoints === 3 || secondPlayerPoints === 3)) {
+      setTimeout(resetGame, 500)
+    }
+
+    if (bestOfFive && (firstPlayerPoints === 5 || secondPlayerPoints === 5)) {
+      setTimeout(resetGame, 500)
+    }
+  }
+
+  const resetScenery = () => {
+    setScenery(INITIAL_SCENERY)
+  }
+
+  const resetBattlefield = () => {
+    resetScenery()
+    setMove("X")
+    setPlays([])
+  }
+
+  const resetGame = () => {
+    setFirstPlayerPoints(0)
+    setSecondPlayerPoints(0)
+    setSceneryWinner([])
+    setGameStart(false)
+    resetBattlefield()
+  }
 
   return (
     <GameContext.Provider
@@ -42,6 +75,8 @@ export const GameProvider = ({ children }) => {
         setGameStart,
         plays,
         setPlays,
+        resetScenery,
+        resetGame,
       }}
     >
       {children}
