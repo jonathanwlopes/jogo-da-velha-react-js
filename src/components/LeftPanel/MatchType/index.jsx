@@ -1,8 +1,11 @@
+import { useGameContext } from "../../../context/GameContext"
 import { Button } from "../../shared/Button"
 import { ToggleOption } from "../../shared/ToggleOption"
 import * as S from "./style"
 
-export const MatchType = ({ bestOfFive, setBestOfFive, firstPlayer, secondPlayer, gameStart, setGameStart }) => {
+export const MatchType = () => {
+  const { firstPlayer, secondPlayer, bestOfFive, setBestOfFive, gameStart, setGameStart } = useGameContext()
+
   const handleStart = () => {
     if (!firstPlayer) return
     if (!secondPlayer) return

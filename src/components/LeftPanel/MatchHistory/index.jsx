@@ -1,6 +1,9 @@
+import { useGameContext } from "../../../context/GameContext"
 import * as S from "./style"
 
-export const MatchHistory = ({ firstPlayer, secondPlayer, sceneryWinner }) => {
+export const MatchHistory = () => {
+  const { firstPlayer, secondPlayer, sceneryWinner } = useGameContext()
+
   return (
     <S.Container>
       <span>Histórico de Partidas</span>

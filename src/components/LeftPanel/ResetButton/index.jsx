@@ -1,18 +1,21 @@
 import * as S from "./style"
-import { INITIAL_SCENERY } from "../../../App"
 import { useEffect } from "react"
+import { INITIAL_SCENERY, useGameContext } from "../../../context/GameContext"
 
-export const ResetButton = ({
-  secondPlayerPoints,
-  firstPlayerPoints,
-  setGameStart,
-  setSceneryWinner,
-  setPlays,
-  setSecondPlayerPoints,
-  setFirstPlayerPoints,
-  setScenery,
-  bestOfFive,
-}) => {
+export const ResetButton = () => {
+  const {
+    bestOfFive,
+    secondPlayerPoints,
+    setSecondPlayerPoints,
+    firstPlayerPoints,
+    setFirstPlayerPoints,
+    setSceneryWinner,
+    setScenery,
+    setGameStart,
+    setPlays,
+    setMove
+  } = useGameContext()
+
   useEffect(() => {
     checkScore()
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -25,6 +28,7 @@ export const ResetButton = ({
     setPlays([])
     setSceneryWinner([])
     setGameStart(false)
+    setMove('X')
   }
 
   const checkScore = () => {

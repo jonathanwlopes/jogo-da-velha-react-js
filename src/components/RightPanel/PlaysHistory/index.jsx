@@ -1,8 +1,10 @@
+import { useGameContext } from "../../../context/GameContext"
 import * as S from "./style"
 
 const square = ["Primeiro", "Segundo", "Terceiro", "Quarto", "Quinto", "Sexto", "Setimo", "Oitavo", "Nono"]
 
-export const PlaysHistory = ({ isBot, plays, setScenery, firstPlayer, secondPlayer }) => {
+export const PlaysHistory = () => {
+  const { firstPlayer, secondPlayer, isBot, setScenery, plays } = useGameContext()
   return (
     <S.Container>
       <span>Histórico de Jogadas</span>

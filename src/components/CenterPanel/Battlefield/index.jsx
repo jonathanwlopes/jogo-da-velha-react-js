@@ -1,22 +1,24 @@
 import { useEffect, useState } from "react"
+import { useGameContext } from "../../../context/GameContext"
 import * as S from "./style"
 
-export const Battlefield = ({
-  scenery,
-  setScenery,
-  setPlays,
-  firstPlayerPoints,
-  secondPlayerPoints,
-  setFirstPlayerPoints,
-  setSecondPlayerPoints,
-  move,
-  setMove,
-  setSceneryWinner,
-  sceneryWinner,
-  gameStart,
-  isBot,
-}) => {
+export const Battlefield = () => {
   const [winner, setWinner] = useState("")
+  const {
+    secondPlayerPoints,
+    setSecondPlayerPoints,
+    firstPlayerPoints,
+    setFirstPlayerPoints,
+    sceneryWinner,
+    setSceneryWinner,
+    move,
+    setMove,
+    isBot,
+    scenery,
+    setScenery,
+    gameStart,
+    setPlays,
+  } = useGameContext()
 
   useEffect(() => {
     winnerVerify()
